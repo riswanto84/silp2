@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}Dashboard Kontrak{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 50%;
+		max-height: 50%;
+		margin: 0 auto;
+		border-radius: 50%;
+        margin-bottom: 100px;
+	}
+</style>
+
+<!-- Content Section -->
+<div class="main-pages">
+    <div class="container-fluid">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Data berhasil disimpan.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-body card-body-modif">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                        <button class="btn btn-primary mt-4 float-end" type="submit" name="submit">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% include 'footer.html' %}
+    </div>
+</div>
+
+<!-- end of Content Section -->
+{% endblock %}
